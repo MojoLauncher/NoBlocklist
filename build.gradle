@@ -1,0 +1,38 @@
+import io.github.sgtsilvio.gradle.proguard.ProguardTask
+
+plugins {
+    id 'java'
+    id("com.gradleup.shadow") version "9.6.1"
+    id("io.github.sgtsilvio.gradle.proguard") version "0.9.0"
+}
+
+group = 'git.artdeell'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.ow2.asm:asm:9.11'
+}
+
+shadowJar {
+    relocate 'org.objectweb', 'git.artdeell.shasm'
+    minimize()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+                "Premain-Class": "git.artdeell.noblocklist.PreMain",
+                "Can-Redefine-Classes": "true",
+                "Can-Retransform-Classes": "true"
+        )
+    }
+}

@@ -71,6 +71,11 @@ public class BlockerTransformer implements ClassFileTransformer {
 
             mv.visitLineNumber(plausibleLineNumber, fakeLineMarker);
             mv.visitLabel(fakeLineMarker);
+
+            /*mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitLdcInsn("[NoBlocklist] Someone's being sneaky-sneaky");
+            mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);*/
+
             mv.visitTypeInsn(Opcodes.NEW, "java/io/IOException");
             mv.visitInsn(Opcodes.DUP);
             mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/io/IOException", "<init>", "()V", false);

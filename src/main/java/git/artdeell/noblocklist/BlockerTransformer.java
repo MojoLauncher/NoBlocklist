@@ -47,7 +47,7 @@ public class BlockerTransformer implements ClassFileTransformer {
         private final int plausibleLineNumber;
         public URLMethodVisitor(MethodVisitor mv) {
             super(Opcodes.ASM9, mv);
-            plausibleLineNumber = new Random(System.nanoTime()).nextInt(1000,1100);
+            plausibleLineNumber = new Random(System.nanoTime()).nextInt(100) + 1000;
         }
 
         private void urlStringCondition(String method, String expectedValue, Label onNeqLabel) {

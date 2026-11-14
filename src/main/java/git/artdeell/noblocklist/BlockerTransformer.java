@@ -1,4 +1,4 @@
-package git.artdeell.noblocklist;
+package git.junior.noblocklist;
 
 import org.objectweb.asm.*;
 
